@@ -1,10 +1,36 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using App.Domain.Entities;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Serilog;
-using System;
+using System.IO;
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// https://www.blinkingcaret.com/2018/02/14/net-core-console-logging/
+// https://github.com/serilog/serilog-extensions-hosting
+// Usage: https://blog.danskingdom.com/Examples-of-setting-up-Serilog-in-Console-apps-and-ASP-Net-Core-3/
+// Splunk: https://salanoi.wordpress.com/2017/09/16/test/
+//
+// Depdenency Injection Framework
+// > dotnet add package Microsoft.Extensions.DependencyInjection
+//
+// Logging
+// > dotnet add package Microsoft.Extensions.Logging
+//
+// Serilog
+// > dotnet add package Serilog
+// > dotnet add package Serilog.Extensions.Hosting
+// > dotnet add package Serilog.Sinks.File
+// > dotnet add package Serilog.Sinks.Console
+//
+// Splunk Logging
+// > dotnet add package Serilog.Sinks.Splunk
+//
+// Configuration Settings
+// > dotnet add package Microsoft.Extensions.Configuration
+// > dotnet add package Microsoft.Extensions.Configuration.Binder
+// > dotnet add package Microsoft.Extensions.Configuration.Json
+// > dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables
+// > dotnet add package Microsoft.Extensions.Configuration.CommandLine
 
 namespace App.Client.Console
 {
@@ -12,14 +38,23 @@ namespace App.Client.Console
     {
         public IConfiguration Configuration { get; }
 
-        public Startup()
+        public Startup(string[] args)
         {
-            var builder = new ConfigurationBuilder();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables()
+                .AddCommandLine(args);
+
             Configuration = builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var appSettings = new AppSettings();
+            Configuration.Bind("AppSettings", appSettings);
+            services.AddSingleton(appSettings);
+
             services.AddLogging(configure => configure.AddSerilog(new LoggerConfiguration().WriteTo.Console().CreateLogger()));
             services.AddLogging(configure => configure.AddSerilog(new LoggerConfiguration().WriteTo.File("log.txt").MinimumLevel.Information().CreateLogger()));
         }
