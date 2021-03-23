@@ -5,9 +5,9 @@ namespace App.Core.Application
 {
     public class FileExporterGit : FileExporterBase
     {
-        private readonly IWebApiRequest _webApiRequest;
+        private readonly IRepository _webApiRequest;
 
-        public FileExporterGit(IWebApiRequest webApiRequest)
+        public FileExporterGit(IRepository webApiRequest)
         {
             _webApiRequest = webApiRequest;
         }

@@ -19,9 +19,9 @@ namespace Test.App.Core.Application
                 UserAgent = ".NET Foundation Repository Reporter"
             };
 
-            IWebApiRequest request = new WebApiRequest();
+            IRepository request = new GITRepository();
 
-            var list = await request.ExecuteRequest<Repository>(apiRequest);
+            var list = await request.Get<RepoDetails>(apiRequest);
 
             Assert.IsNotNull(list);
 

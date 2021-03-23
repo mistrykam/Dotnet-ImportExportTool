@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace App.Domain.Entities
 {
-    public class Repository
+    public class RepoDetails
     {
         [JsonPropertyName("name")]
         public string Name { get; set; }
