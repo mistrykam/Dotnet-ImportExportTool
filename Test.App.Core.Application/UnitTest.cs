@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 namespace Test.App.Core.Application
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest
     {
         [TestMethod]
-        public async Task TestMethod1Async()
+        public async Task Test_ReadGitRepositoryAsync()
         {
             System.Diagnostics.Debug.WriteLine("Starting...");
 
@@ -20,9 +20,9 @@ namespace Test.App.Core.Application
                 UserAgent = ".NET Foundation Repository Reporter"
             };
 
-            IRepository request = new GITRepository();
+            IGitRepository gitRepository = new GitRepository();
 
-            var list = await request.Get<RepoDetails>(apiRequest);
+            var list = await gitRepository.Get(apiRequest);
 
             Assert.IsNotNull(list);
 

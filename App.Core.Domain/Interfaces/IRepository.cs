@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace App.Core.Domain.Interfaces
 {
-    public interface IRepository
+    public interface IGitRepository
     {
-        Task<IEnumerable<T>> Get<T>(ApiRequest apiRequest);
+        Task<IEnumerable<RepoDetails>> Get(ApiRequest apiRequest);
     }
 }

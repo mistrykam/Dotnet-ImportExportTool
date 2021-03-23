@@ -6,10 +6,10 @@ namespace App.Core.Application
 {
     public class FileExporterGit : FileExporterBase
     {
-        private readonly IRepository _repository;
+        private readonly IGitRepository _repository;
         private readonly ILogger<FileExporterGit> _logging;
 
-        public FileExporterGit(IRepository repository, ILogger<FileExporterGit> logging)
+        public FileExporterGit(IGitRepository repository, ILogger<FileExporterGit> logging)
         {
             _repository = repository;
             _logging = logging;
