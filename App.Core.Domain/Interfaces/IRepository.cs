@@ -6,6 +6,6 @@ namespace App.Core.Domain.Interfaces
 {
     public interface IGitRepository
     {
-        Task<IEnumerable<RepoDetails>> Get(ApiRequest apiRequest);
+        Task<IEnumerable<GitRepoDetails>> Get(GitApiRequest apiRequest);
     }
 }

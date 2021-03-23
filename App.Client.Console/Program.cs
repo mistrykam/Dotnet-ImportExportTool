@@ -3,12 +3,13 @@ using App.Core.Domain.Entities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
 
 namespace App.Client.Console
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
             IServiceCollection services = new ServiceCollection();
             Startup startup = new Startup(args);
@@ -25,9 +26,9 @@ namespace App.Client.Console
             logger.LogInformation($"User name is {setting.UserName} Password is {setting.Password}");
 
             // git repository request
-            var git = serviceProvider.GetService<FileExporterGit>();
+            var git = serviceProvider.GetService<GitFileExporter>();
 
-            git.Execute();
+            await git.ExecuteAsync();
         }
     }
 }

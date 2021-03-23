@@ -1,19 +1,21 @@
-﻿namespace App.Core.Domain.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace App.Core.Domain.Interfaces
 {
     public abstract class FileExporterBase
     {
         public abstract void Start();
 
-        public abstract void ReadData();
+        public abstract Task ReadDataAsync();
 
         public abstract void ExportData();
 
         public abstract void End();
 
-        public void Execute()
+        public async Task ExecuteAsync()
         {
             Start();
-            ReadData();
+            await ReadDataAsync();
             ExportData();
             End();
         }

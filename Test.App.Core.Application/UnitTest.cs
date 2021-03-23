@@ -13,7 +13,7 @@ namespace Test.App.Core.Application
         {
             System.Diagnostics.Debug.WriteLine("Starting...");
 
-            var apiRequest = new ApiRequest()
+            GitApiRequest gitApiRequest = new GitApiRequest()
             {
                 Uri = "https://api.github.com/orgs/dotnet/repos",
                 Accept = "application/vnd.github.v3+json",
@@ -22,7 +22,7 @@ namespace Test.App.Core.Application
 
             IGitRepository gitRepository = new GitRepository();
 
-            var list = await gitRepository.Get(apiRequest);
+            var list = await gitRepository.Get(gitApiRequest);
 
             Assert.IsNotNull(list);
 

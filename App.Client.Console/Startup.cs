@@ -70,7 +70,7 @@ namespace App.Client.Console
                                                                                                    .CreateLogger()));
             // Git Repository Dependency
             services.AddTransient<IGitRepository, GitRepository>();
-            services.AddTransient<FileExporterGit>();
+            services.AddTransient<GitFileExporter>();
         }
     }
 }
