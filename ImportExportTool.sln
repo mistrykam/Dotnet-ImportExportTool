@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infrastructure.DataAcce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.Entities", "App.Domain.Entities\App.Domain.Entities.csproj", "{92CF3BDD-9F63-4D30-8B71-27C33F34A670}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.Interfaces", "App.Domain.Interfaces\App.Domain.Interfaces.csproj", "{18C163AE-F49A-40CF-8F15-1B540F5EC48E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.App.Core.Application", "Test.App.Core.Application\Test.App.Core.Application.csproj", "{70A14B66-BB09-4A24-BC46-F592CF68C8B4}"
 EndProject
 Global
@@ -37,10 +35,6 @@ Global
 		{92CF3BDD-9F63-4D30-8B71-27C33F34A670}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92CF3BDD-9F63-4D30-8B71-27C33F34A670}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92CF3BDD-9F63-4D30-8B71-27C33F34A670}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18C163AE-F49A-40CF-8F15-1B540F5EC48E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18C163AE-F49A-40CF-8F15-1B540F5EC48E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18C163AE-F49A-40CF-8F15-1B540F5EC48E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18C163AE-F49A-40CF-8F15-1B540F5EC48E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{70A14B66-BB09-4A24-BC46-F592CF68C8B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{70A14B66-BB09-4A24-BC46-F592CF68C8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70A14B66-BB09-4A24-BC46-F592CF68C8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
