@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace App.Core.Domain.Interfaces
+namespace App.Core.Domain.Repository
 {
     public interface IGitRepository
     {

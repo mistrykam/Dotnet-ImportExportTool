@@ -1,24 +1,27 @@
 ﻿using App.Core.Domain.Entities;
-using App.Core.Domain.Interfaces;
+using App.Core.Domain.Repository;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-public class GitRepository : IGitRepository
+namespace App.Infrastructure.DataAccess
 {
-    private static readonly HttpClient client = new HttpClient();
-
-    public async Task<IEnumerable<GitRepoDetails>> Get(GitApiRequest apiRequest)
+    public class GitRepository : IGitRepository
     {
-        client.DefaultRequestHeaders.Accept.Clear();
-        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(apiRequest.Accept));
-        client.DefaultRequestHeaders.Add("User-Agent", apiRequest.UserAgent);
+        private static readonly HttpClient client = new HttpClient();
 
-        var streamTask = client.GetStreamAsync(apiRequest.Uri);
-        var repositories = await JsonSerializer.DeserializeAsync<List<GitRepoDetails>>(await streamTask);
+        public async Task<IEnumerable<GitRepoDetails>> Get(GitApiRequest apiRequest)
+        {
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(apiRequest.Accept));
+            client.DefaultRequestHeaders.Add("User-Agent", apiRequest.UserAgent);
 
-        return repositories;
+            var streamTask = client.GetStreamAsync(apiRequest.Uri);
+            var repositories = await JsonSerializer.DeserializeAsync<List<GitRepoDetails>>(await streamTask);
+
+            return repositories;
+        }
     }
 }

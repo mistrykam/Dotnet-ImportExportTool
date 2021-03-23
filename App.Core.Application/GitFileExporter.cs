@@ -1,5 +1,6 @@
 ﻿using App.Core.Domain.Entities;
 using App.Core.Domain.Interfaces;
+using App.Core.Domain.Repository;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
