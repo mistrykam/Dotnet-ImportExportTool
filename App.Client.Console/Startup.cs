@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System.IO;
 
+#region ------- Package dependencies documentation -------
 /////////////////////////////////////////////////////////////////////////////////////////
 // https://www.blinkingcaret.com/2018/02/14/net-core-console-logging/
 // https://github.com/serilog/serilog-extensions-hosting
@@ -31,6 +32,7 @@ using System.IO;
 // > dotnet add package Microsoft.Extensions.Configuration.Json
 // > dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables
 // > dotnet add package Microsoft.Extensions.Configuration.CommandLine
+#endregion /////////////////////////////////////////////////////////////////////////////////////////
 
 namespace App.Client.Console
 {
@@ -56,7 +58,7 @@ namespace App.Client.Console
             services.AddSingleton(appSettings);
 
             services.AddLogging(configure => configure.AddSerilog(new LoggerConfiguration().WriteTo.Console().CreateLogger()));
-            services.AddLogging(configure => configure.AddSerilog(new LoggerConfiguration().WriteTo.File("log.txt").MinimumLevel.Information().CreateLogger()));
+            services.AddLogging(configure => configure.AddSerilog(new LoggerConfiguration().WriteTo.File(appSettings.LogFilePath).MinimumLevel.Information().CreateLogger()));
         }
     }
 }
