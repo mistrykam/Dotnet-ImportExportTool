@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace App.Domain.Interfaces
+namespace App.Core.Domain.Interfaces
 {
     internal interface ILogger
     {

@@ -1,4 +1,5 @@
-using App.Domain.Entities;
+using App.Core.Domain.Entities;
+using App.Core.Domain.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 

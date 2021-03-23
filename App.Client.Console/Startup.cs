@@ -1,4 +1,4 @@
-﻿using App.Domain.Entities;
+﻿using App.Core.Domain.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;

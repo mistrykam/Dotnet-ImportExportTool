@@ -1,4 +1,4 @@
-﻿namespace App.Domain.Entities
+﻿namespace App.Core.Domain.Entities
 {
     public class AppSettings
     {

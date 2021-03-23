@@ -1,4 +1,4 @@
-﻿namespace App.Domain.Interfaces
+﻿namespace App.Core.Domain.Interfaces
 {
     public abstract class FileExporterBase
     {

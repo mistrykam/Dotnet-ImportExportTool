@@ -1,4 +1,5 @@
-﻿using App.Domain.Entities;
+﻿using App.Core.Domain.Entities;
+using App.Core.Domain.Interfaces;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;

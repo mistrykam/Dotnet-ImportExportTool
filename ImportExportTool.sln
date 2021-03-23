@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Core.Application", "App
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infrastructure.DataAccess", "App.Infrastructure.DataAccess\App.Infrastructure.DataAccess.csproj", "{0E5D57B5-9CB5-4774-973A-3FFB2297388D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.Entities", "App.Domain.Entities\App.Domain.Entities.csproj", "{92CF3BDD-9F63-4D30-8B71-27C33F34A670}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Core.Domain", "App.Core.Domain\App.Core.Domain.csproj", "{92CF3BDD-9F63-4D30-8B71-27C33F34A670}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.App.Core.Application", "Test.App.Core.Application\Test.App.Core.Application.csproj", "{70A14B66-BB09-4A24-BC46-F592CF68C8B4}"
 EndProject

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace App.Domain.Entities
+namespace App.Core.Domain.Entities
 {
     public class RepoDetails
     {

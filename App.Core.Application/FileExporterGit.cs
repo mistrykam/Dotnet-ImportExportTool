@@ -1,4 +1,4 @@
-﻿using App.Domain.Interfaces;
+﻿using App.Core.Domain.Interfaces;
 using System;
 
 namespace App.Core.Application
