@@ -10,13 +10,15 @@ namespace App.Core.Application
     {
         private readonly IGitRepository _repository;
         private readonly ILogger<GitFileExporter> _logging;
+        private readonly AppSettings _appSettings;
 
         private IEnumerable<GitRepoDetails> _repoDetailsList = new List<GitRepoDetails>();
 
-        public GitFileExporter(IGitRepository repository, ILogger<GitFileExporter> logging)
+        public GitFileExporter(IGitRepository repository, ILogger<GitFileExporter> logging, AppSettings appSettings)
         {
             _repository = repository;
             _logging = logging;
+            _appSettings = appSettings;
         }
 
         public override void Start()
@@ -30,9 +32,9 @@ namespace App.Core.Application
 
             GitApiRequest gitApiRequest = new GitApiRequest()
             {
-                Uri = "https://api.github.com/orgs/dotnet/repos",
-                Accept = "application/vnd.github.v3+json",
-                UserAgent = ".NET Foundation Repository Reporter"
+                Uri = _appSettings.GitUri,
+                Accept = _appSettings.GitAccept,
+                UserAgent = _appSettings.GitUserAgent
             };
 
             _repoDetailsList = await _repository.Get(gitApiRequest);
