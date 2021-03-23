@@ -1,4 +1,5 @@
-﻿using App.Core.Domain.Entities;
+﻿using App.Core.Application;
+using App.Core.Domain.Entities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -22,6 +23,11 @@ namespace App.Client.Console
             // setting
             var setting = serviceProvider.GetService<AppSettings>();
             logger.LogInformation($"User name is {setting.UserName} Password is {setting.Password}");
+
+            // git repository request
+            var git = serviceProvider.GetService<FileExporterGit>();
+
+            git.Execute();
         }
     }
 }

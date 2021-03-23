@@ -1,4 +1,6 @@
-﻿using App.Core.Domain.Entities;
+﻿using App.Core.Application;
+using App.Core.Domain.Entities;
+using App.Core.Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -53,12 +55,22 @@ namespace App.Client.Console
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // Application Settings
             var appSettings = new AppSettings();
             Configuration.Bind("AppSettings", appSettings);
             services.AddSingleton(appSettings);
 
-            services.AddLogging(configure => configure.AddSerilog(new LoggerConfiguration().WriteTo.Console().CreateLogger()));
-            services.AddLogging(configure => configure.AddSerilog(new LoggerConfiguration().WriteTo.File(appSettings.LogFilePath).MinimumLevel.Information().CreateLogger()));
+            // Logging Dependency
+            services.AddLogging(configure => configure.AddSerilog(new LoggerConfiguration().WriteTo.Console()
+                                                                                                   .CreateLogger()));
+
+            services.AddLogging(configure => configure.AddSerilog(new LoggerConfiguration().WriteTo.File(appSettings.LogFilePath)
+                                                                                                   .MinimumLevel
+                                                                                                   .Information()
+                                                                                                   .CreateLogger()));
+            // Git Repository Dependency
+            services.AddTransient<IGitRepository, GitRepository>();
+            services.AddTransient<FileExporterGit>();
         }
     }
 }

@@ -17,23 +17,22 @@ namespace App.Core.Application
 
         public override void Start()
         {
-            throw new NotImplementedException();
+            _logging.LogInformation("Git Start");
         }
 
         public override void ReadData()
         {
-            throw new NotImplementedException();
+            _logging.LogInformation("Git Read Data");
         }
 
         public override void ExportData()
         {
-            throw new NotImplementedException();
+            _logging.LogInformation("Git Export Data");
         }
-
 
         public override void End()
         {
-            throw new NotImplementedException();
+            _logging.LogInformation("Git End");
         }
 
 
