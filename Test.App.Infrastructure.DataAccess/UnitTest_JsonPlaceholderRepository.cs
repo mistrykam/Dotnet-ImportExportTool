@@ -31,7 +31,12 @@ namespace Test.App.Core.Application
             if (list != null)
             {
                 foreach (JsonPlaceholderUserDetails item in list)
-                    System.Diagnostics.Debug.WriteLine($" {item.Id}\n {item.Name}\n {item.UserName}\n {item.Email}\n {item.Address.street}, {item.Address.zipcode} \n");
+                { 
+                    System.Diagnostics.Debug.WriteLine($"{item.Id} | {item.UserName} | {item.Name} | {item.Email}");
+                    System.Diagnostics.Debug.WriteLine($"{item.Address.Street}, {item.Address.ZipCode}");
+                    System.Diagnostics.Debug.WriteLine($"{item.Address.Geo.Lattitude}, {item.Address.Geo.Longitude}");
+                    System.Diagnostics.Debug.WriteLine($"{item.Company.Name} | {item.Company.CatchPhrase} \n");
+                }
             }
         }
     }

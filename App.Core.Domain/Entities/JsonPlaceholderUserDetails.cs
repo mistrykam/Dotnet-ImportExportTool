@@ -34,23 +34,40 @@ namespace App.Core.Domain.Entities
 
     public class Address
     {
-        public string street { get; set; }
-        public string suite { get; set; }
-        public string city { get; set; }
-        public string zipcode { get; set; }
-        public Geo geo { get; set; }
+        [JsonPropertyName("street")]
+        public string Street { get; set; }
+
+        [JsonPropertyName("suite")]
+        public string Suite { get; set; }
+
+        [JsonPropertyName("city")]
+        public string City { get; set; }
+
+        [JsonPropertyName("zipcode")]
+        public string ZipCode { get; set; }
+
+        [JsonPropertyName("geo")]
+        public Geo Geo { get; set; }
     }
 
     public class Geo
     {
-        public string lat { get; set; }
-        public string lng { get; set; }
+        [JsonPropertyName("lat")]
+        public string Lattitude { get; set; }
+
+        [JsonPropertyName("lng")]
+        public string Longitude { get; set; }
     }
 
     public class Company
     {
-        public string name { get; set; }
-        public string catchPhrase { get; set; }
-        public string bs { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("catchPhrase")]
+        public string CatchPhrase { get; set; }
+
+        [JsonPropertyName("bs")]
+        public string BS { get; set; }
     }
 }
