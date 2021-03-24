@@ -17,6 +17,13 @@ using System.IO;
 // Depdenency Injection Framework
 // > dotnet add package Microsoft.Extensions.DependencyInjection
 //
+// Configuration Settings
+// > dotnet add package Microsoft.Extensions.Configuration
+// > dotnet add package Microsoft.Extensions.Configuration.Binder
+// > dotnet add package Microsoft.Extensions.Configuration.Json
+// > dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables
+// > dotnet add package Microsoft.Extensions.Configuration.CommandLine
+//
 // Logging
 // > dotnet add package Microsoft.Extensions.Logging
 //
@@ -29,27 +36,35 @@ using System.IO;
 // Splunk Logging
 // > dotnet add package Serilog.Sinks.Splunk
 //
-// Configuration Settings
-// > dotnet add package Microsoft.Extensions.Configuration
-// > dotnet add package Microsoft.Extensions.Configuration.Binder
-// > dotnet add package Microsoft.Extensions.Configuration.Json
-// > dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables
-// > dotnet add package Microsoft.Extensions.Configuration.CommandLine
 #endregion /////////////////////////////////////////////////////////////////////////////////////////
 
 namespace App.Client.Console
 {
+    /// <summary>
+    /// Startup will read the AppSetting.json file and setup the dependency injection framework.
+    /// 
+    /// Uses:
+    ///     Microsoft.Extensions.DependencyInjection
+    ///     Microsoft.Extensions.Logging
+    ///     Microsoft.Extensions.Configuration
+    ///     Serilog
+    ///     
+    ///     
+    /// </summary>
     public class Startup
     {
         public IConfiguration Configuration { get; }
 
         public Startup(string[] args)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddEnvironmentVariables()
-                .AddCommandLine(args);
+            IConfigurationBuilder builder = new ConfigurationBuilder()
+                                                .SetBasePath(Directory.GetCurrentDirectory())
+                                                // load in the json file as configuration
+                                                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                                                // load environment variables
+                                                .AddEnvironmentVariables()
+                                                // override configuration from the json file with commandline arguments
+                                                .AddCommandLine(args);
 
             Configuration = builder.Build();
         }
