@@ -22,8 +22,8 @@ namespace App.Client.Console
                 IServiceProvider serviceProvider = services.BuildServiceProvider();
 
                 // TO DO: Add commandline parsing
-                // command line parsing: https://dotnetdevaddict.co.za/2020/09/25/getting-started-with-system-commandline/
-                // dotnet add package Microsoft.Extensions.Configuration.CommandLine --version 5.0.0
+                // Command line parsing: https://github.com/commandlineparser/commandline
+                // dotnet add package CommandLineParser --version 2.8.0
 
                 // GIT Export request
                 GitFileExporter git = serviceProvider.GetService<GitFileExporter>();
