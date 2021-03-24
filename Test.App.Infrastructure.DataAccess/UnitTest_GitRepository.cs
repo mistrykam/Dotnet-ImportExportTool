@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Test.App.Core.Application
 {
     [TestClass]
-    public class UnitTest
+    public class UnitTest_GitRepository
     {
         [TestMethod]
         public async Task Test_ReadGitRepositoryAsync()
