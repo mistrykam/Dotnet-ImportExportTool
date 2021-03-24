@@ -6,6 +6,6 @@ namespace App.Core.Domain.Repository
 {
     public interface IJsonPlaceholderRepository
     {
-        Task<IEnumerable<JsonRepoDetails>> GetAsync();
+        Task<IEnumerable<JsonPlaceholderUserDetails>> GetAsync();
     }
 }

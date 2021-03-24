@@ -12,14 +12,14 @@ namespace App.Infrastructure.DataAccess
     {
         private static readonly HttpClient client = new HttpClient();
 
-        public async Task<IEnumerable<JsonRepoDetails>> GetAsync()
+        public async Task<IEnumerable<JsonPlaceholderUserDetails>> GetAsync()
         {
             client.DefaultRequestHeaders.Accept.Clear();
             //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(apiRequest.Accept));
             client.DefaultRequestHeaders.Add("User-Agent", "Import Export Tool");
 
             var streamTask = await client.GetStreamAsync("http://jsonplaceholder.typicode.com/users");
-            var list = await JsonSerializer.DeserializeAsync<List<JsonRepoDetails>>(streamTask);
+            var list = await JsonSerializer.DeserializeAsync<List<JsonPlaceholderUserDetails>>(streamTask);
 
             return list;
         }

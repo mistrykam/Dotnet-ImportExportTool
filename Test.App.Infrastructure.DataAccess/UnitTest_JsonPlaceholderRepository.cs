@@ -24,14 +24,14 @@ namespace Test.App.Core.Application
 
             IJsonPlaceholderRepository repository = new JsonPlaceholderRepository();
 
-            IEnumerable<JsonRepoDetails> list = await repository.GetAsync();
+            IEnumerable<JsonPlaceholderUserDetails> list = await repository.GetAsync();
 
             Assert.IsNotNull(list);
 
             if (list != null)
             {
-                foreach (JsonRepoDetails item in list)
-                    System.Diagnostics.Debug.WriteLine($" {item.Id}\n {item.Name}\n {item.UserName}\n {item.Email}\n \n");
+                foreach (JsonPlaceholderUserDetails item in list)
+                    System.Diagnostics.Debug.WriteLine($" {item.Id}\n {item.Name}\n {item.UserName}\n {item.Email}\n {item.Address.street}, {item.Address.zipcode} \n");
             }
         }
     }
