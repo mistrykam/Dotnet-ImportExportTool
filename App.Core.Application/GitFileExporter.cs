@@ -24,12 +24,12 @@ namespace App.Core.Application
 
         public override void Start()
         {
-            _logging.LogInformation("Git Start");
+            _logging.LogInformation("Start GitFileExporter");
         }
 
         public override async Task ReadDataAsync()
         {
-            _logging.LogInformation("Git Read Data");
+            _logging.LogInformation("Read Data GitFileExporter");
 
             GitApiRequest gitApiRequest = new GitApiRequest()
             {
@@ -43,7 +43,7 @@ namespace App.Core.Application
 
         public override void ExportData()
         {
-            _logging.LogInformation("Git Export Data");
+            _logging.LogInformation("Export Data GitFileExporter");
 
             foreach (GitRepoDetails item in _repoDetailsList)
             {
@@ -53,7 +53,7 @@ namespace App.Core.Application
 
         public override void End()
         {
-            _logging.LogInformation("Git End");
+            _logging.LogInformation("End GitFileExporter");
         }
     }
 }

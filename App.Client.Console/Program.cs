@@ -18,17 +18,20 @@ namespace App.Client.Console
             IServiceProvider serviceProvider = services.BuildServiceProvider();
 
             // test it
-            var logger = serviceProvider.GetService<ILogger<Program>>();
+            ILogger<Program> logger = serviceProvider.GetService<ILogger<Program>>();
             logger.LogInformation($"Hello World {System.DateTime.Now}");
 
             // setting
-            var setting = serviceProvider.GetService<AppSettings>();
+            AppSettings setting = serviceProvider.GetService<AppSettings>();
             logger.LogInformation($"User name is {setting.UserName} Password is {setting.Password}");
 
-            // git repository request
-            var git = serviceProvider.GetService<GitFileExporter>();
-
+            // GIT Export request
+            GitFileExporter git = serviceProvider.GetService<GitFileExporter>();
             await git.ExecuteAsync();
+
+            // Json Placeholder Export request
+            JsonPlaceholderFileExporter json = serviceProvider.GetService<JsonPlaceholderFileExporter>();
+            await json.ExecuteAsync();
         }
     }
 }
