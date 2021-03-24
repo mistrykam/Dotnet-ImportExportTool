@@ -13,18 +13,16 @@ namespace Test.App.Core.Application
         [TestMethod]
         public async Task Test_JsonPlaceholderRepository_GetAsync()
         {
-            System.Diagnostics.Debug.WriteLine("Starting...");
-
-            //GitApiRequest gitApiRequest = new GitApiRequest()
-            //{
-            //    Uri = "https://api.github.com/orgs/dotnet/repos",
-            //    Accept = "application/vnd.github.v3+json",
-            //    UserAgent = ".NET Foundation Repository Reporter"
-            //};
+            JsonPlaceholderApiRequest apiRequest = new JsonPlaceholderApiRequest()
+            {
+                Uri = "http://jsonplaceholder.typicode.com/users",
+                Accept = "application/json",
+                UserAgent = "Import-Export-Tool"
+            };
 
             IJsonPlaceholderRepository repository = new JsonPlaceholderRepository();
 
-            IEnumerable<JsonPlaceholderUserDetails> list = await repository.GetAsync();
+            IEnumerable<JsonPlaceholderUserDetails> list = await repository.GetAsync(apiRequest);
 
             Assert.IsNotNull(list);
 

@@ -13,18 +13,16 @@ namespace Test.App.Core.Application
         [TestMethod]
         public async Task Test_GitRepositoryAsync_GetAsync()
         {
-            System.Diagnostics.Debug.WriteLine("Starting...");
-
-            GitApiRequest gitApiRequest = new GitApiRequest()
+            GitApiRequest apiRequest = new GitApiRequest()
             {
                 Uri = "https://api.github.com/orgs/dotnet/repos",
                 Accept = "application/vnd.github.v3+json",
-                UserAgent = ".NET Foundation Repository Reporter"
+                UserAgent = "Import-Export-Tool"
             };
 
             IGitRepository repository = new GitRepository();
 
-            IEnumerable<GitRepoDetails> list = await repository.GetAsync(gitApiRequest);
+            IEnumerable<GitRepoDetails> list = await repository.GetAsync(apiRequest);
 
             Assert.IsNotNull(list);
 
