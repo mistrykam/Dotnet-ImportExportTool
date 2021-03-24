@@ -72,6 +72,10 @@ namespace App.Client.Console
             // Git Repository Dependency
             services.AddTransient<IGitRepository, GitRepository>();
             services.AddTransient<GitFileExporter>();
+
+            // Json Placeholder Repository Dependency
+            // services.AddTransient<IJsonPlaceholderRepository, JsonPlaceholderRepository>();
+            // services.AddTransient<GitFileExporter>();
         }
     }
 }
