@@ -2,6 +2,7 @@ using App.Core.Domain.Entities;
 using App.Core.Domain.Repository;
 using App.Infrastructure.DataAccess;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Test.App.Core.Application
@@ -10,7 +11,7 @@ namespace Test.App.Core.Application
     public class UnitTest_GitRepository
     {
         [TestMethod]
-        public async Task Test_ReadGitRepositoryAsync()
+        public async Task Test_GitRepositoryAsync_GetAsync()
         {
             System.Diagnostics.Debug.WriteLine("Starting...");
 
@@ -21,15 +22,15 @@ namespace Test.App.Core.Application
                 UserAgent = ".NET Foundation Repository Reporter"
             };
 
-            IGitRepository gitRepository = new GitRepository();
+            IGitRepository repository = new GitRepository();
 
-            var list = await gitRepository.Get(gitApiRequest);
+            IEnumerable<GitRepoDetails> list = await repository.GetAsync(gitApiRequest);
 
             Assert.IsNotNull(list);
 
             if (list != null)
             {
-                foreach (var item in list)
+                foreach (GitRepoDetails item in list)
                     System.Diagnostics.Debug.WriteLine($" {item.Name}\n {item.Description}\n {item.Homepage}\n {item.GitHubHomeUrl}\n {item.LastPush}\n");
             }
         }

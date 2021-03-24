@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace App.Core.Domain.Repository
 {
-    public interface IGitRepository
+    public interface IJsonPlaceholderRepository
     {
-        Task<IEnumerable<GitRepoDetails>> GetAsync(GitApiRequest apiRequest);
+        Task<IEnumerable<JsonRepoDetails>> GetAsync();
     }
 }

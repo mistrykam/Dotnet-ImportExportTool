@@ -12,16 +12,16 @@ namespace App.Infrastructure.DataAccess
     {
         private static readonly HttpClient client = new HttpClient();
 
-        public async Task<IEnumerable<GitRepoDetails>> Get(GitApiRequest apiRequest)
+        public async Task<IEnumerable<GitRepoDetails>> GetAsync(GitApiRequest apiRequest)
         {
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(apiRequest.Accept));
             client.DefaultRequestHeaders.Add("User-Agent", apiRequest.UserAgent);
 
-            var streamTask = client.GetStreamAsync(apiRequest.Uri);
-            var repositories = await JsonSerializer.DeserializeAsync<List<GitRepoDetails>>(await streamTask);
+            var streamTask = await client.GetStreamAsync(apiRequest.Uri);
+            var list = await JsonSerializer.DeserializeAsync<List<GitRepoDetails>>(streamTask);
 
-            return repositories;
+            return list;
         }
     }
 }

@@ -38,7 +38,7 @@ namespace App.Core.Application
                 UserAgent = _appSettings.GitUserAgent
             };
 
-            _repoDetailsList = await _repository.Get(gitApiRequest);
+            _repoDetailsList = await _repository.GetAsync(gitApiRequest);
         }
 
         public override void ExportData()
