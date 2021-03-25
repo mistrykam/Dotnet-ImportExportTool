@@ -39,9 +39,9 @@ namespace App.Core.Application
 
                 GitApiRequest apiRequest = new GitApiRequest()
                 {
-                    Uri = _appSettings.GitUri,
-                    Accept = _appSettings.GitAccept,
-                    UserAgent = _appSettings.GitUserAgent
+                    Uri = _appSettings.GitSettings.Uri,
+                    Accept = _appSettings.GitSettings.Accept,
+                    UserAgent = _appSettings.GitSettings.UserAgent
                 };
 
                 _repoList = await _importRepository.GetAsync(apiRequest);
@@ -68,7 +68,7 @@ namespace App.Core.Application
                 foreach (GitRepoDetails item in _repoList)
                     _logging.LogDebug(item.ToString());
 
-                await _fileExportRepository.WriteToCSVFileAsync(_repoList, _appSettings.GitExportFilePath);
+                await _fileExportRepository.WriteToCSVFileAsync(_repoList, _appSettings.GitSettings.ExportFilePath);
 
                 _logging.LogInformation("Completed request successfully.");
             }

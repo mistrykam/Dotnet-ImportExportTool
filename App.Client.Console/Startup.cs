@@ -74,8 +74,9 @@ namespace App.Client.Console
         public void ConfigureServices(IServiceCollection services)
         {
             // Application Settings
-            var appSettings = new AppSettings();
-            Configuration.Bind("AppSettings", appSettings);
+            AppSettings appSettings = new AppSettings();            
+            Configuration.Bind("GitSettings", appSettings.GitSettings);                      
+            Configuration.Bind("JsonPlaceholderSettings", appSettings.JsonPlaceholderSettings);
             services.AddSingleton(appSettings);
 
             // Logging Dependency (https://github.com/serilog/serilog-settings-configuration)

@@ -39,9 +39,9 @@ namespace App.Core.Application
 
                 JsonPlaceholderApiRequest apiRequest = new JsonPlaceholderApiRequest()
                 {
-                    Uri = _appSettings.JsonPlaceholderUri,
-                    Accept = _appSettings.JsonPlaceholderAccept,
-                    UserAgent = _appSettings.JsonPlaceholderUserAgent
+                    Uri = _appSettings.JsonPlaceholderSettings.Uri,
+                    Accept = _appSettings.JsonPlaceholderSettings.Accept,
+                    UserAgent = _appSettings.JsonPlaceholderSettings.UserAgent
                 };
 
                 _repoList = await _importRepository.GetAsync(apiRequest);
@@ -68,7 +68,7 @@ namespace App.Core.Application
                 foreach (JsonPlaceholderUserDetails item in _repoList)
                     _logging.LogDebug(item.ToString());
 
-                await _fileExportRepository.WriteToCSVFileAsync(_repoList, _appSettings.JsonExportFilePath);
+                await _fileExportRepository.WriteToCSVFileAsync(_repoList, _appSettings.JsonPlaceholderSettings.ExportFilePath);
 
                 _logging.LogInformation("Completed request successfully.");
             }
