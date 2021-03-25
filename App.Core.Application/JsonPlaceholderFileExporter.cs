@@ -2,6 +2,7 @@
 using App.Core.Domain.Interfaces;
 using App.Core.Domain.Repository;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -27,30 +28,56 @@ namespace App.Core.Application
             _logging.LogInformation("Start JsonPlaceholderFileExporter");
         }
 
-        public override async Task ReadDataAsync()
+        public override async Task<bool> ReadDataAsync()
         {
-            _logging.LogInformation("Read Data JsonPlaceholderFileExporter ");
-
-            JsonPlaceholderApiRequest gitApiRequest = new JsonPlaceholderApiRequest()
+            try
             {
-                Uri = _appSettings.GitUri,
-                Accept = _appSettings.GitAccept,
-                UserAgent = _appSettings.GitUserAgent
-            };
+                _logging.LogInformation("Sending request to read data...");
 
-            _repoList = await _repository.GetAsync(gitApiRequest);
-        }
+                JsonPlaceholderApiRequest gitApiRequest = new JsonPlaceholderApiRequest()
+                {
+                    Uri = _appSettings.GitUri,
+                    Accept = _appSettings.GitAccept,
+                    UserAgent = _appSettings.GitUserAgent
+                };
 
-        public override Task ExportDataAsync()
-        {
-            _logging.LogInformation("Export Data JsonPlaceholderFileExporter");
+                _repoList = await _repository.GetAsync(gitApiRequest);
 
-            foreach (JsonPlaceholderUserDetails item in _repoList)
+                _logging.LogInformation("Completed request successfully.");
+            }
+            catch (Exception ex)
             {
-                _logging.LogInformation(item.Name);
+                _logging.LogError(ex, "An error occurred when getting the reading the data.");
+
+                return false;
             }
 
-            return Task.CompletedTask;
+            return true;
+        }
+
+        public override async Task<bool> ExportDataAsync()
+        {
+            try
+            {
+                _logging.LogInformation("Exporting data...");
+
+                await WriteToCSVFile(_repoList, _appSettings.JsonExportFilePath);
+
+                foreach (JsonPlaceholderUserDetails item in _repoList)
+                {
+                    _logging.LogInformation(item.Name);
+                }
+
+                _logging.LogInformation("Completed request successfully.");
+            }
+            catch (Exception ex)
+            {
+                _logging.LogError(ex, "An error occurred when exporting the data.");
+
+                return false;
+            }
+
+            return true;
         }
 
         public override void End()
