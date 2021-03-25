@@ -41,7 +41,7 @@ namespace App.Core.Application
             _repoList = await _repository.GetAsync(gitApiRequest);
         }
 
-        public override void ExportData()
+        public override Task ExportDataAsync()
         {
             _logging.LogInformation("Export Data JsonPlaceholderFileExporter");
 
@@ -49,6 +49,8 @@ namespace App.Core.Application
             {
                 _logging.LogInformation(item.Name);
             }
+
+            return Task.CompletedTask;
         }
 
         public override void End()

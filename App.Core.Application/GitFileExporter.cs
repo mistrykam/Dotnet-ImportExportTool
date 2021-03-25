@@ -41,9 +41,11 @@ namespace App.Core.Application
             _repoDetailsList = await _repository.GetAsync(gitApiRequest);
         }
 
-        public override void ExportData()
+        public override async Task ExportDataAsync()
         {
             _logging.LogInformation("Export Data GitFileExporter");
+
+            await WriteToCSVFile(_repoDetailsList, _appSettings.GitExportFilePath);
 
             foreach (GitRepoDetails item in _repoDetailsList)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace App.Core.Domain.Entities
@@ -24,5 +25,14 @@ namespace App.Core.Domain.Entities
         public DateTime LastPushUtc { get; set; }
 
         public DateTime LastPush => LastPushUtc.ToLocalTime();
+
+        /// <summary>
+        /// How each list should be formated
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return $"\"{Name}\", \"{Description}\", \"{GitHubHomeUrl}\", \"{Homepage}\", {Watchers}, {LastPushUtc}, {LastPush}";
+        }
     }
 }
