@@ -2,13 +2,13 @@
 {
     public class AppSettings
     {
-        public string LogFilePath { get; set; }
-
+        // Git Import/Export
         public string GitUri { get; set; }
         public string GitAccept { get; set; }
         public string GitUserAgent { get; set; }
         public string GitExportFilePath { get; set; }
 
+        // Json Placeholder Import/Export
         public string JsonPlaceholderUri { get; set; }
         public string JsonPlaceholderAccept { get; set; }
         public string JsonPlaceholderUserAgent { get; set; }

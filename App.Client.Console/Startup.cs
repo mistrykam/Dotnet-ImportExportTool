@@ -31,6 +31,7 @@ using System.IO;
 // Serilog
 // > dotnet add package Serilog
 // > dotnet add package Serilog.Extensions.Hosting
+// > dotnet add package Serilog.Settings.Configuration
 // > dotnet add package Serilog.Sinks.File
 // > dotnet add package Serilog.Sinks.Console
 //
@@ -77,14 +78,10 @@ namespace App.Client.Console
             Configuration.Bind("AppSettings", appSettings);
             services.AddSingleton(appSettings);
 
-            // Logging Dependency
-            services.AddLogging(configure => configure.AddSerilog(new LoggerConfiguration().WriteTo.Console()
-                                                                                                   .CreateLogger()));
+            // Logging Dependency (https://github.com/serilog/serilog-settings-configuration)
+            services.AddLogging(configure => configure.AddSerilog(new LoggerConfiguration().ReadFrom.Configuration(Configuration)                                                                                           
+                                                                                           .CreateLogger()));
 
-            services.AddLogging(configure => configure.AddSerilog(new LoggerConfiguration().WriteTo.File(appSettings.LogFilePath)
-                                                                                                   .MinimumLevel
-                                                                                                   .Information()
-                                                                                                   .CreateLogger()));
             // Git dependencies
             services.AddTransient<IGitRepository, GitRepository>();
             services.AddTransient<GitImportExport>();
