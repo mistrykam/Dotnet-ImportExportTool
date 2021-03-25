@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Core.Domain.Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -6,36 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Core.Domain.Interfaces
+namespace App.Infrastructure.ExportData
 {
-    public abstract class FileExporterBase
+    public class FileExportRepository : IFileExportRepository
     {
-        public abstract void Start();
-
-        public abstract Task<bool> ReadDataAsync();
-
-        public abstract Task<bool> ExportDataAsync();
-
-        public abstract void End();
-
-        public async Task ExecuteAsync()
-        {
-            try
-            {
-                Start();
-                bool result = await ReadDataAsync();
-
-                if (result == true)
-                    await ExportDataAsync();
-                End();
-            }
-            catch (Exception ex)
-            {
-                // TODO: Log this error
-                Console.WriteLine($"Error Occurred: {ex.Message}");
-            }
-        }
-
         /// <summary>
         /// Write the data to the specified directory
         /// 
@@ -45,7 +20,7 @@ namespace App.Core.Domain.Interfaces
         /// <param name="data"></param>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        protected static async Task WriteToCSVFileAsync<T>(IEnumerable<T> data, string filePath)
+        public async Task WriteToCSVFileAsync<T>(IEnumerable<T> data, string filePath)
         {
             try
             {

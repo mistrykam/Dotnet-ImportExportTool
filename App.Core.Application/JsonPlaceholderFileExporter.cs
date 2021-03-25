@@ -61,7 +61,7 @@ namespace App.Core.Application
             {
                 _logging.LogInformation("Exporting data...");
 
-                await WriteToCSVFile(_repoList, _appSettings.JsonExportFilePath);
+                await WriteToCSVFileAsync(_repoList, _appSettings.JsonExportFilePath);
 
                 foreach (JsonPlaceholderUserDetails item in _repoList)
                 {

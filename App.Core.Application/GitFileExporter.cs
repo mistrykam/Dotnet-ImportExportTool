@@ -61,7 +61,7 @@ namespace App.Core.Application
             {
                 _logging.LogInformation("Exporting data...");
 
-                await WriteToCSVFile(_repoList, _appSettings.GitExportFilePath);
+                await WriteToCSVFileAsync(_repoList, _appSettings.GitExportFilePath);
 
                 foreach (GitRepoDetails item in _repoList)
                 {

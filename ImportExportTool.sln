@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Core.Domain", "App.Core
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.App.Infrastructure.DataAccess", "Test.App.Infrastructure.DataAccess\Test.App.Infrastructure.DataAccess.csproj", "{70A14B66-BB09-4A24-BC46-F592CF68C8B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Infrastructure.ExportData", "App.Infrastructure.ExportData\App.Infrastructure.ExportData.csproj", "{D9689A1C-376F-4546-8D95-13DEF2719C4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{70A14B66-BB09-4A24-BC46-F592CF68C8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70A14B66-BB09-4A24-BC46-F592CF68C8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70A14B66-BB09-4A24-BC46-F592CF68C8B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9689A1C-376F-4546-8D95-13DEF2719C4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9689A1C-376F-4546-8D95-13DEF2719C4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9689A1C-376F-4546-8D95-13DEF2719C4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9689A1C-376F-4546-8D95-13DEF2719C4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
