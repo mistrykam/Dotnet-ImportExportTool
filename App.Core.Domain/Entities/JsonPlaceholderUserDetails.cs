@@ -22,14 +22,19 @@ namespace App.Core.Domain.Entities
         [JsonPropertyName("address")]
         public Address Address { get; set; }
 
-        [JsonPropertyName("Phone")]
-        public string phone { get; set; }
+        [JsonPropertyName("phone")]
+        public string Phone { get; set; }
 
         [JsonPropertyName("website")]
         public Uri WebSite { get; set; }
 
         [JsonPropertyName("company")]
         public Company Company { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id}, \"{Name}\", {UserName}, {Email},	\"{Address}\", {Phone},	\"{WebSite}\", \"{Company}\"";
+        }
     }
 
     public class Address
@@ -48,6 +53,11 @@ namespace App.Core.Domain.Entities
 
         [JsonPropertyName("geo")]
         public Geo Geo { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Street}, {City}, {ZipCode}";
+        }
     }
 
     public class Geo
@@ -69,5 +79,10 @@ namespace App.Core.Domain.Entities
 
         [JsonPropertyName("bs")]
         public string BS { get; set; }
-    }
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
+    }    
 }

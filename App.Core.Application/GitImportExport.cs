@@ -37,14 +37,14 @@ namespace App.Core.Application
             {
                 _logging.LogInformation("Sending request to read data...");
 
-                GitApiRequest gitApiRequest = new GitApiRequest()
+                GitApiRequest apiRequest = new GitApiRequest()
                 {
                     Uri = _appSettings.GitUri,
                     Accept = _appSettings.GitAccept,
                     UserAgent = _appSettings.GitUserAgent
                 };
 
-                _repoList = await _importRepository.GetAsync(gitApiRequest);
+                _repoList = await _importRepository.GetAsync(apiRequest);
 
                 _logging.LogInformation("Completed request successfully");
             }
@@ -64,12 +64,11 @@ namespace App.Core.Application
             {
                 _logging.LogInformation("Exporting data...");
 
-                await _fileExportRepository.WriteToCSVFileAsync(_repoList, _appSettings.GitExportFilePath);
-
+                // debugging
                 foreach (GitRepoDetails item in _repoList)
-                {
-                    _logging.LogInformation(item.GitHubHomeUrl.ToString());
-                }
+                    _logging.LogDebug(item.ToString());
+
+                await _fileExportRepository.WriteToCSVFileAsync(_repoList, _appSettings.GitExportFilePath);
 
                 _logging.LogInformation("Completed request successfully.");
             }

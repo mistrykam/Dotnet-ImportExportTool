@@ -37,14 +37,14 @@ namespace App.Core.Application
             {
                 _logging.LogInformation("Sending request to read data...");
 
-                JsonPlaceholderApiRequest gitApiRequest = new JsonPlaceholderApiRequest()
+                JsonPlaceholderApiRequest apiRequest = new JsonPlaceholderApiRequest()
                 {
-                    Uri = _appSettings.GitUri,
-                    Accept = _appSettings.GitAccept,
-                    UserAgent = _appSettings.GitUserAgent
+                    Uri = _appSettings.JsonPlaceholderUri,
+                    Accept = _appSettings.JsonPlaceholderAccept,
+                    UserAgent = _appSettings.JsonPlaceholderUserAgent
                 };
 
-                _repoList = await _importRepository.GetAsync(gitApiRequest);
+                _repoList = await _importRepository.GetAsync(apiRequest);
 
                 _logging.LogInformation("Completed request successfully.");
             }
@@ -64,12 +64,11 @@ namespace App.Core.Application
             {
                 _logging.LogInformation("Exporting data...");
 
-                await _fileExportRepository.WriteToCSVFileAsync(_repoList, _appSettings.JsonExportFilePath);
-
+                // debugging
                 foreach (JsonPlaceholderUserDetails item in _repoList)
-                {
-                    _logging.LogInformation(item.Name);
-                }
+                    _logging.LogDebug(item.ToString());
+
+                await _fileExportRepository.WriteToCSVFileAsync(_repoList, _appSettings.JsonExportFilePath);
 
                 _logging.LogInformation("Completed request successfully.");
             }
