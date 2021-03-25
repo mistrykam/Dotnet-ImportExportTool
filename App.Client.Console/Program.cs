@@ -1,5 +1,6 @@
 ﻿using App.Core.Application;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
@@ -25,13 +26,29 @@ namespace App.Client.Console
                 // Command line parsing: https://github.com/commandlineparser/commandline
                 // dotnet add package CommandLineParser --version 2.8.0
 
+                ILogger<Program> logger = serviceProvider.GetService<ILogger<Program>>();
+
                 // GIT Export request
-                GitFileExporter git = serviceProvider.GetService<GitFileExporter>();
-                await git.ExecuteAsync();
+                try
+                {
+                    GitFileExporter git = serviceProvider.GetService<GitFileExporter>();
+                    await git.ExecuteAsync();
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, $"An handle exception occured in {nameof(GitFileExporter)}.");
+                }
 
                 // Json Placeholder Export request
-                JsonPlaceholderFileExporter json = serviceProvider.GetService<JsonPlaceholderFileExporter>();
-                await json.ExecuteAsync();
+                try
+                {
+                    JsonPlaceholderFileExporter json = serviceProvider.GetService<JsonPlaceholderFileExporter>();
+                    await json.ExecuteAsync();
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, $"An handle exception occured in {nameof(JsonPlaceholderFileExporter)}.");
+                }
 
                 // exited normally
                 return 0;

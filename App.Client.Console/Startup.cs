@@ -2,6 +2,7 @@
 using App.Core.Domain.Entities;
 using App.Core.Domain.Repository;
 using App.Infrastructure.DataAccess;
+using App.Infrastructure.ExportData;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -84,13 +85,16 @@ namespace App.Client.Console
                                                                                                    .MinimumLevel
                                                                                                    .Information()
                                                                                                    .CreateLogger()));
-            // Git Repository Dependency
+            // Git dependencies
             services.AddTransient<IGitRepository, GitRepository>();
             services.AddTransient<GitFileExporter>();
 
-            // Json Placeholder Repository Dependency
+            // Json Placeholder dependencies
             services.AddTransient<IJsonPlaceholderRepository, JsonPlaceholderRepository>();
             services.AddTransient<JsonPlaceholderFileExporter>();
+
+            // File Export dependencies
+            services.AddTransient<IFileExportRepository, FileExportRepository>();
         }
     }
 }

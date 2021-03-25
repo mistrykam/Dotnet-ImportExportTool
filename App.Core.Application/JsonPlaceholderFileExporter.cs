@@ -10,15 +10,18 @@ namespace App.Core.Application
 {
     public class JsonPlaceholderFileExporter : FileExporterBase
     {
-        private readonly IJsonPlaceholderRepository _repository;
+        private readonly IJsonPlaceholderRepository _importRepository;
+        private readonly IFileExportRepository _fileExportRepository;
         private readonly ILogger<JsonPlaceholderFileExporter> _logging;
         private readonly AppSettings _appSettings;
 
         private IEnumerable<JsonPlaceholderUserDetails> _repoList = new List<JsonPlaceholderUserDetails>();
 
-        public JsonPlaceholderFileExporter(IJsonPlaceholderRepository repository, ILogger<JsonPlaceholderFileExporter> logging, AppSettings appSettings)
+        public JsonPlaceholderFileExporter(IJsonPlaceholderRepository importRepository, IFileExportRepository fileExportRepository,
+                                           ILogger<JsonPlaceholderFileExporter> logging, AppSettings appSettings)
         {
-            _repository = repository;
+            _importRepository = importRepository;
+            _fileExportRepository = fileExportRepository;
             _logging = logging;
             _appSettings = appSettings;
         }
@@ -41,7 +44,7 @@ namespace App.Core.Application
                     UserAgent = _appSettings.GitUserAgent
                 };
 
-                _repoList = await _repository.GetAsync(gitApiRequest);
+                _repoList = await _importRepository.GetAsync(gitApiRequest);
 
                 _logging.LogInformation("Completed request successfully.");
             }
@@ -61,7 +64,7 @@ namespace App.Core.Application
             {
                 _logging.LogInformation("Exporting data...");
 
-                await WriteToCSVFileAsync(_repoList, _appSettings.JsonExportFilePath);
+                await _fileExportRepository.WriteToCSVFileAsync(_repoList, _appSettings.JsonExportFilePath);
 
                 foreach (JsonPlaceholderUserDetails item in _repoList)
                 {

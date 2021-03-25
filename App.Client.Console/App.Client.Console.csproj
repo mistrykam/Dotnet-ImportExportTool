@@ -33,6 +33,7 @@
     <ProjectReference Include="..\App.Core.Application\App.Core.Application.csproj" />
     <ProjectReference Include="..\App.Core.Domain\App.Core.Domain.csproj" />
     <ProjectReference Include="..\App.Infrastructure.DataAccess\App.Infrastructure.DataAccess.csproj" />
+    <ProjectReference Include="..\App.Infrastructure.ExportData\App.Infrastructure.ExportData.csproj" />
   </ItemGroup>
 
 </Project>

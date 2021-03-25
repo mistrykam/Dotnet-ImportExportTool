@@ -10,15 +10,18 @@ namespace App.Core.Application
 {
     public class GitFileExporter : FileExporterBase
     {
-        private readonly IGitRepository _repository;
+        private readonly IGitRepository _importRepository;
+        private readonly IFileExportRepository _fileExportRepository;
         private readonly ILogger<GitFileExporter> _logging;
         private readonly AppSettings _appSettings;
 
         private IEnumerable<GitRepoDetails> _repoList = new List<GitRepoDetails>();
 
-        public GitFileExporter(IGitRepository repository, ILogger<GitFileExporter> logging, AppSettings appSettings)
+        public GitFileExporter(IGitRepository importRepository, IFileExportRepository fileExportRepository, 
+                               ILogger<GitFileExporter> logging, AppSettings appSettings)
         {
-            _repository = repository;
+            _importRepository = importRepository;
+            _fileExportRepository = fileExportRepository;
             _logging = logging;
             _appSettings = appSettings;
         }
@@ -41,7 +44,7 @@ namespace App.Core.Application
                     UserAgent = _appSettings.GitUserAgent
                 };
 
-                _repoList = await _repository.GetAsync(gitApiRequest);
+                _repoList = await _importRepository.GetAsync(gitApiRequest);
 
                 _logging.LogInformation("Completed request successfully");
             }
@@ -61,7 +64,7 @@ namespace App.Core.Application
             {
                 _logging.LogInformation("Exporting data...");
 
-                await WriteToCSVFileAsync(_repoList, _appSettings.GitExportFilePath);
+                await _fileExportRepository.WriteToCSVFileAsync(_repoList, _appSettings.GitExportFilePath);
 
                 foreach (GitRepoDetails item in _repoList)
                 {
