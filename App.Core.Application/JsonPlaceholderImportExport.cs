@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace App.Core.Application
 {
-    public class JsonPlaceholderFileExporter : FileExporterBase
+    public class JsonPlaceholderImportExport : ImportExportBase
     {
         private readonly IJsonPlaceholderRepository _importRepository;
         private readonly IFileExportRepository _fileExportRepository;
-        private readonly ILogger<JsonPlaceholderFileExporter> _logging;
+        private readonly ILogger<JsonPlaceholderImportExport> _logging;
         private readonly AppSettings _appSettings;
 
         private IEnumerable<JsonPlaceholderUserDetails> _repoList = new List<JsonPlaceholderUserDetails>();
 
-        public JsonPlaceholderFileExporter(IJsonPlaceholderRepository importRepository, IFileExportRepository fileExportRepository,
-                                           ILogger<JsonPlaceholderFileExporter> logging, AppSettings appSettings)
+        public JsonPlaceholderImportExport(IJsonPlaceholderRepository importRepository, IFileExportRepository fileExportRepository,
+                                           ILogger<JsonPlaceholderImportExport> logging, AppSettings appSettings)
         {
             _importRepository = importRepository;
             _fileExportRepository = fileExportRepository;
@@ -27,8 +27,8 @@ namespace App.Core.Application
         }
 
         public override void Start()
-        {
-            _logging.LogInformation("Start JsonPlaceholderFileExporter");
+        {            
+            _logging.LogInformation($"Start {nameof(JsonPlaceholderImportExport)}");
         }
 
         public override async Task<bool> ReadDataAsync()
@@ -85,7 +85,7 @@ namespace App.Core.Application
 
         public override void End()
         {
-            _logging.LogInformation("End JsonPlaceholderFileExporter");
+            _logging.LogInformation($"End {nameof(JsonPlaceholderImportExport)}");
         }
     }
 }

@@ -31,23 +31,23 @@ namespace App.Client.Console
                 // GIT Export request
                 try
                 {
-                    GitFileExporter git = serviceProvider.GetService<GitFileExporter>();
+                    GitImportExport git = serviceProvider.GetService<GitImportExport>();
                     await git.ExecuteAsync();
                 }
                 catch (Exception ex)
                 {
-                    logger.LogError(ex, $"An handle exception occured in {nameof(GitFileExporter)}.");
+                    logger.LogError(ex, $"An handle exception occured in {nameof(GitImportExport)}.");
                 }
 
                 // Json Placeholder Export request
                 try
                 {
-                    JsonPlaceholderFileExporter json = serviceProvider.GetService<JsonPlaceholderFileExporter>();
+                    JsonPlaceholderImportExport json = serviceProvider.GetService<JsonPlaceholderImportExport>();
                     await json.ExecuteAsync();
                 }
                 catch (Exception ex)
                 {
-                    logger.LogError(ex, $"An handle exception occured in {nameof(JsonPlaceholderFileExporter)}.");
+                    logger.LogError(ex, $"An handle exception occured in {nameof(JsonPlaceholderImportExport)}.");
                 }
 
                 // exited normally

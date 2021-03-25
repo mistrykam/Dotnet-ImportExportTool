@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace App.Core.Domain.Interfaces
 {
-    public abstract class FileExporterBase
+    public abstract class ImportExportBase
     {
         public abstract void Start();
 

@@ -87,11 +87,11 @@ namespace App.Client.Console
                                                                                                    .CreateLogger()));
             // Git dependencies
             services.AddTransient<IGitRepository, GitRepository>();
-            services.AddTransient<GitFileExporter>();
+            services.AddTransient<GitImportExport>();
 
             // Json Placeholder dependencies
             services.AddTransient<IJsonPlaceholderRepository, JsonPlaceholderRepository>();
-            services.AddTransient<JsonPlaceholderFileExporter>();
+            services.AddTransient<JsonPlaceholderImportExport>();
 
             // File Export dependencies
             services.AddTransient<IFileExportRepository, FileExportRepository>();

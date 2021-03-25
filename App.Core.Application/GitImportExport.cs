@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace App.Core.Application
 {
-    public class GitFileExporter : FileExporterBase
+    public class GitImportExport : ImportExportBase
     {
         private readonly IGitRepository _importRepository;
         private readonly IFileExportRepository _fileExportRepository;
-        private readonly ILogger<GitFileExporter> _logging;
+        private readonly ILogger<GitImportExport> _logging;
         private readonly AppSettings _appSettings;
 
         private IEnumerable<GitRepoDetails> _repoList = new List<GitRepoDetails>();
 
-        public GitFileExporter(IGitRepository importRepository, IFileExportRepository fileExportRepository, 
-                               ILogger<GitFileExporter> logging, AppSettings appSettings)
+        public GitImportExport(IGitRepository importRepository, IFileExportRepository fileExportRepository, 
+                               ILogger<GitImportExport> logging, AppSettings appSettings)
         {
             _importRepository = importRepository;
             _fileExportRepository = fileExportRepository;
@@ -28,7 +28,7 @@ namespace App.Core.Application
 
         public override void Start()
         {
-            _logging.LogInformation("Start GitFileExporter");
+            _logging.LogInformation($"Start {nameof(GitImportExport)}");
         }
 
         public override async Task<bool> ReadDataAsync()
@@ -84,8 +84,8 @@ namespace App.Core.Application
         }
 
         public override void End()
-        {
-            _logging.LogInformation("End GitFileExporter");
+        {            
+            _logging.LogInformation($"End {nameof(GitImportExport)}");
         }
     }
 }
