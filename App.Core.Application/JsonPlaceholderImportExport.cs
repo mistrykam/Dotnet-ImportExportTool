@@ -64,9 +64,12 @@ namespace App.Core.Application
             {
                 _logging.LogInformation("Exporting data...");
 
-                // debugging
-                foreach (JsonPlaceholderUserDetails item in _repoList)
-                    _logging.LogDebug(item.ToString());
+                // for debugging: write each record to the log
+                if (_logging.IsEnabled(LogLevel.Debug))
+                {
+                    foreach (JsonPlaceholderUserDetails item in _repoList)
+                        _logging.LogDebug(item.ToString());
+                }
 
                 await _fileExportRepository.WriteToCSVFileAsync(_repoList, _appSettings.JsonPlaceholderSettings.ExportFilePath);
 

@@ -17,7 +17,7 @@ namespace App.Core.Application
 
         private IEnumerable<GitRepoDetails> _repoList = new List<GitRepoDetails>();
 
-        public GitImportExport(IGitRepository importRepository, IFileExportRepository fileExportRepository, 
+        public GitImportExport(IGitRepository importRepository, IFileExportRepository fileExportRepository,
                                ILogger<GitImportExport> logging, AppSettings appSettings)
         {
             _importRepository = importRepository;
@@ -64,9 +64,12 @@ namespace App.Core.Application
             {
                 _logging.LogInformation("Exporting data...");
 
-                // debugging
-                foreach (GitRepoDetails item in _repoList)
-                    _logging.LogDebug(item.ToString());
+                // for debugging: write each record to the log
+                if (_logging.IsEnabled(LogLevel.Debug))
+                {
+                    foreach (GitRepoDetails item in _repoList)
+                        _logging.LogDebug(item.ToString());
+                }
 
                 await _fileExportRepository.WriteToCSVFileAsync(_repoList, _appSettings.GitSettings.ExportFilePath);
 
@@ -83,7 +86,7 @@ namespace App.Core.Application
         }
 
         public override void End()
-        {            
+        {
             _logging.LogInformation($"End {nameof(GitImportExport)}");
         }
     }
