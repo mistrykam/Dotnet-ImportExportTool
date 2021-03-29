@@ -3,6 +3,8 @@ Console-based import/export application built using the Clean Architecture patte
 
 The Core will contain entities and interfaces.  The Application will contain the business logic and uses the Core.  All dependencies are injected via the constructor dependency injection framework.
 
+![Clean Architecture Diagram](/Clean-Architecture-Diagram.png)
+
 The application will read data from a GIT repository and a JSON Placeholder repository and export the data to a CSV file.
 
 There are two infrastructure components:
