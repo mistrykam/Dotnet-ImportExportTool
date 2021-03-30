@@ -15,11 +15,11 @@ There are two infrastructure components:
 .NET Core 3.1 / C# 
 
 # Dependencies
-Microsoft.Extensions.DependencyInjection
-Microsoft.Extensions.Configuration
-Microsoft.Extensions.Logging
-Serilog
+* Microsoft.Extensions.DependencyInjection
+* Microsoft.Extensions.Configuration
+* Microsoft.Extensions.Logging
+* Serilog
 
-# Testing
-Microsoft.VisualStudio.TestTools.UnitTesting
+# Testing Framework
+* Microsoft.VisualStudio.TestTools.UnitTesting
 
