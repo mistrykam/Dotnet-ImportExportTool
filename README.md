@@ -11,8 +11,8 @@ There are two infrastructure components:
 * DataAccess - Git API / JSON Placeholder
 * File System to write out the CSV file
 
-# Frameworks
-.NET Core 3.1 / C# 
+# Framework
+* .NET Core 3.1 / C# 
 
 # Dependencies
 * Microsoft.Extensions.DependencyInjection
