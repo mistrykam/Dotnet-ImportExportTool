@@ -26,12 +26,12 @@ namespace App.Core.Application
             _appSettings = appSettings;
         }
 
-        public override void Start()
+        protected override void Start()
         {
             _logging.LogInformation($"Start {nameof(GitImportExport)}");
         }
 
-        public override async Task<bool> ReadDataAsync()
+        protected override async Task<bool> ReadDataAsync()
         {
             try
             {
@@ -58,7 +58,27 @@ namespace App.Core.Application
             return true;
         }
 
-        public override async Task<bool> ExportDataAsync()
+        protected override Task<bool> TransformDataAsync()
+        {
+            try
+            {
+                _logging.LogInformation("Transforming data...");
+
+                /* Add transformation here */
+
+                _logging.LogInformation("Completed transform successfully.");
+
+                return Task.FromResult(true);
+            }
+            catch (Exception ex)
+            {
+                _logging.LogError(ex, "An error occurred when transforming the data.");
+
+                return Task.FromResult(true);  /* FIX: should just be true if method marked async */
+            }
+        }
+
+        protected override async Task<bool> ExportDataAsync()
         {
             try
             {
@@ -85,9 +105,10 @@ namespace App.Core.Application
             return true;
         }
 
-        public override void End()
+        protected override void Finish()
         {
-            _logging.LogInformation($"End {nameof(GitImportExport)}");
+            _logging.LogInformation($"Finished {nameof(GitImportExport)}");
         }
+
     }
 }
