@@ -20,6 +20,6 @@ There are two infrastructure components:
 * Microsoft.Extensions.Logging
 * Serilog
 
-# Testing Framework
+# Unit Testing
 * Microsoft.VisualStudio.TestTools.UnitTesting
 
